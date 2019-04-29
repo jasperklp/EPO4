@@ -80,7 +80,7 @@ function ReadSensors_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 while(1)
-[sensorleft, sensorright] = getdistance();
+[sensorleft, sensorright] = SensorDistance();
 set(handles.sensor_left, 'string', sensorleft);
 set(handles.sensor_right, 'string', sensorright);
 pause(0.5);
