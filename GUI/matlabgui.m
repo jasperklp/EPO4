@@ -80,13 +80,14 @@ function ReadSensors_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 while(1)
-[sensorleft, sensorright] = SensorDistance();
+[sensorleft, sensorright, delay] = SensorDistance();
 set(handles.sensor_left, 'string', sensorleft);
 set(handles.sensor_right, 'string', sensorright);
+set(handles.delaytime, 'string', delay);
 pause(0.5);
 speed = str2num(get(handles.speed, 'string'));
 direction = str2num(get(handles.direction, 'string'));
-[new_speed, new_direction] = drive(speed, direction, 5);
+[new_speed, new_direction] = drive(speed, direction, 10);
 speed= new_speed;
 direction = new_direction;
 set(handles.speed, 'string', speed);
@@ -100,7 +101,7 @@ function OpenConnection_Callback(hObject, eventdata, handles)
 % hObject    handle to OpenConnection (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-Port = '.\\COM3'; %Outgoing COM port 
+Port = '.\\COM10'; %Outgoing COM port 
 result = EPOCommunications('open',Port); %Check the value of result
 speed = 150;
 direction = 150;
